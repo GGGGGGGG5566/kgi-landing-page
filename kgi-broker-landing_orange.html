@@ -16,15 +16,22 @@
     <style>
         /* --- 1. 設計系統：色彩與字體 --- */
         :root {
+            /* 品牌色 */
             --kgi-orange: #ff6b35;
             --kgi-orange-hover: #e55825;
             --kgi-blue: #003781;
             --kgi-blue-hover: #002b65;
             --accent-green: #16a085;
             --accent-green-hover: #128a72;
+            
+            /* 輔助色 */
             --star-yellow: #ffc107;
+            
+            /* 背景色 */
             --bg-soft-orange: #FFF7F2;
             --bg-neutral: #fdfcfb;
+            
+            /* 文字色 */
             --text-primary: #003781;
             --text-body: #34495e;
             --text-light: #ffffff;
@@ -75,6 +82,9 @@
         .nav-toggle { display: block; background-color: transparent; border: 1px solid #dee2e6; padding: 8px 10px; border-radius: 5px; cursor: pointer;}
         .hamburger-icon { font-size: 24px; color: var(--kgi-blue); display: block; }
         .mobile-nav { display: none; flex-direction: column; background-color: #fff; position: absolute; top: 100%; left: 0; width: 100%; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 999; }
+        .mobile-nav.active { display: flex; }
+        .mobile-nav a { padding: 15px 20px; text-align: center; text-decoration: none; color: var(--text-body); border-bottom: 1px solid #dee2e6; }
+        .mobile-nav a:last-child { border-bottom: none; }
         
         .hero { 
             background: linear-gradient(135deg, var(--kgi-orange) 0%, var(--kgi-orange-hover) 100%);
@@ -96,12 +106,14 @@
         .hero-text p a { color: #fff; text-decoration: underline; font-weight: 700; }
         .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 30px; }
         .hero-buttons .btn { flex-shrink: 0; padding: 15px 30px; font-size: 18px; border-radius: 8px; }
+        
         .hero-btn-blue { background-color: var(--kgi-blue); color: var(--text-light); }
         .hero-btn-blue:hover { background-color: var(--kgi-blue-hover); }
         .hero-btn-orange { background-color: var(--kgi-orange); color: var(--text-light); }
         .hero-btn-orange:hover { background-color: var(--kgi-orange-hover); }
         .hero-btn-green { background-color: var(--accent-green); color: var(--text-light); }
         .hero-btn-green:hover { background-color: var(--accent-green-hover); }
+
         .hero-image { text-align: center; align-self: end; }
         .hero-image img { max-width: 120%; height: auto; display: block; filter: drop-shadow(0 10px 25px rgba(0,0,0,0.2)); }
 
@@ -109,8 +121,12 @@
         .hero-features li { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 500; }
         .hero-features .iconify { color: var(--text-light); font-size: 20px; }
 
-        .hero-side-buttons { position: fixed; top: 50%; right: 0; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 998; }
-        .side-btn { display: block; padding: 12px 20px; font-size: 16px; font-weight: 700; text-decoration: none; border-radius: 8px 0 0 8px; color: var(--text-light); box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: all 0.2s ease-in-out; min-width: 120px; text-align: center; }
+        .hero-side-buttons {
+            position: fixed; top: 50%; right: 0; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 998;
+        }
+        .side-btn { 
+            display: block; padding: 12px 20px; font-size: 16px; font-weight: 700; text-decoration: none; border-radius: 8px 0 0 8px; color: var(--text-light); box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: all 0.2s ease-in-out; min-width: 120px; text-align: center;
+        }
         .side-btn:hover { transform: translateX(-8px); }
         .side-btn-blue { background-color: var(--kgi-blue); }
         .side-btn-orange { background-color: var(--kgi-orange); }
@@ -124,8 +140,12 @@
 
         .card { background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); text-align: center; }
         
-        #gifts, #app-advantages, #steps, #about, #faq { background-color: var(--bg-soft-orange); }
-        #promotions, #rsp, #testimonials { background-color: var(--bg-neutral); }
+        #gifts, #app-advantages, #steps, #about, #faq {
+            background-color: var(--bg-soft-orange);
+        }
+        #promotions, #rsp, #testimonials {
+            background-color: var(--bg-neutral);
+        }
 
         .gifts-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1100px; margin: 0 auto; }
         .gift-card { background-color: #fff; border-radius: 12px; box-shadow: 0 8px 25px rgba(40,50,60,0.08); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; }
@@ -138,7 +158,13 @@
         .gift-card-content p { font-size: 16px; line-height: 1.7; color: var(--text-body); text-align: left; }
 
         .about-content { display: grid; grid-template-columns: 1fr 2fr; gap: 50px; align-items: center; }
-        .about-text h3 { font-size: 28px; font-weight: 900; color: var(--text-primary); margin-bottom: 20px; line-height: 1.4; }
+        .about-text h3 {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
         .profile-card { background-color: var(--kgi-blue); color: var(--text-light); padding: 30px; border-radius: 10px; text-align: center; }
         .profile-photo { 
             width: 150px; height: 150px; border-radius: 50%; 
@@ -146,12 +172,12 @@
             border: 4px solid var(--kgi-orange);
             display: flex; align-items: center; justify-content: center;
             font-size: 80px; font-weight: 700; color: var(--kgi-blue);
+            overflow: hidden;
         }
         .profile-photo img { width: 100%; height: 100%; object-fit: cover; }
         .profile-name { font-size: 24px; font-weight: 700; }
         .profile-title { color: var(--kgi-orange); margin-bottom: 15px; }
         
-        /* 【恢復】證照樣式 */
         .credentials { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; justify-content: center; }
         .credential-item { 
             background-color: rgba(255, 255, 255, 0.1); 
@@ -160,7 +186,6 @@
         }
         .credential-item .iconify { font-size: 16px; }
 
-        /* 【恢復並修正】聯絡資訊樣式 */
         .contact-info { margin-top: 25px; text-align: left; padding: 0 15px; }
         .contact-info strong { display: block; margin-bottom: 15px; color: var(--kgi-orange); font-size: 18px; }
         .contact-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px; }
@@ -176,7 +201,11 @@
         
         .data-proof { padding-top: 80px; text-align: center; }
         .data-proof .card { background-color: transparent; box-shadow: none; display: flex; flex-direction: column; }
-        .data-proof .card-icon { font-size: 40px; margin-bottom: 15px; color: var(--kgi-blue); }
+        .data-proof .card-icon { 
+            font-size: 40px; 
+            margin-bottom: 15px;
+            color: var(--kgi-blue);
+        }
         .data-proof h3 { font-size: 48px; margin-bottom: 5px; font-weight: 900; color: var(--kgi-blue); }
         .data-proof .card p { font-size: 16px; color: var(--text-secondary); margin-top: auto; }
         .star-rating { display: flex; justify-content: center; gap: 4px; margin-bottom: 10px; font-size: 28px; color: var(--star-yellow); }
@@ -196,11 +225,47 @@
         .testimonial-author { font-weight: 700; text-align: right; color: var(--text-primary); }
         
         #cta { background-color: var(--kgi-blue); }
-        .cta-card { background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 12px; }
-        #cta .card-icon { font-size: 48px; margin-bottom: 20px; color: var(--kgi-orange) !important; }
+        .cta-card { 
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+        #cta .card-icon { 
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--kgi-orange) !important; 
+        }
         .cta-card h3 { color: var(--text-light); }
-        .cta-card p { color: #d0d0d0; }
-        .cta-button { margin-top: 20px; }
+        .cta-card p { color: #d0d0d0; flex-grow: 1; }
+        
+        .qr-code {
+            max-width: 160px;
+            width: 75%;
+            aspect-ratio: 1 / 1;
+            margin: 20px auto 0 auto;
+            background-color: #fff;
+            padding: 8px;
+            border-radius: 8px;
+        }
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+        }
+        .cta-button { margin-top: 25px; }
+        #cta .btn-primary {
+            background: var(--kgi-orange);
+            border: 2px solid var(--kgi-orange);
+            color: var(--text-light);
+        }
+        #cta .btn-primary:hover {
+            background: var(--kgi-orange-hover);
+            border-color: var(--kgi-orange-hover);
+        }
         
         footer { background-color: #002254; color: #bdc3c7; text-align: center; padding: 30px 20px; }
         
@@ -426,7 +491,9 @@
                  <h2 class="section-title">關於業務襄理 陳詠焯</h2>
                 <div class="about-content">
                     <div class="profile-card">
-                        <div class="profile-photo">陳</div>
+                        <div class="profile-photo">
+                            <img src="advisor_photo.jpg" alt="陳詠焯業務襄理">
+                        </div>
                         <h3 class="profile-name">陳詠焯</h3>
                         <p class="profile-title">業務襄理</p>
                         <div class="credentials">
