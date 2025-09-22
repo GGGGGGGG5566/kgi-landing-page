@@ -140,10 +140,10 @@
 
         .card { background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); text-align: center; }
         
-        #gifts, #app-advantages, #steps, #about, #faq {
+        #gifts, #app-advantages, #steps, #about {
             background-color: var(--bg-soft-orange);
         }
-        #promotions, #rsp, #testimonials {
+        #promotions, #rsp, #testimonials, #faq {
             background-color: var(--bg-neutral);
         }
 
@@ -223,8 +223,22 @@
         .testimonial-card { padding: 20px; text-align: left; }
         .testimonial-quote { font-style: italic; margin-bottom: 15px; }
         .testimonial-author { font-weight: 700; text-align: right; color: var(--text-primary); }
-        
+
+        #faq .container { max-width: 800px; }
+        .faq-item { 
+            background-color: #fff;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            margin-bottom: 20px; 
+        }
+        .faq-question { font-weight: 700; font-size: 18px; color: var(--text-primary); }
+        .faq-answer { margin-top: 15px; }
+
         #cta { background-color: var(--kgi-blue); }
+        /* 【修改】修正CTA標題與副標題顏色 */
+        #cta .section-title, #cta .section-subtitle { color: var(--text-light); }
+        #cta .grid-3 { align-items: stretch; }
         .cta-card { 
             background-color: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -257,10 +271,13 @@
             object-fit: contain;
         }
         .cta-button { margin-top: 25px; }
+        /* 【修改】修正按鈕高度佔位符 */
+        .cta-button-placeholder { min-height: 54px; /* 按鈕42px + margin-top 12px (來自.btn) */ }
         #cta .btn-primary {
             background: var(--kgi-orange);
             border: 2px solid var(--kgi-orange);
             color: var(--text-light);
+            box-shadow: none;
         }
         #cta .btn-primary:hover {
             background: var(--kgi-orange-hover);
@@ -527,7 +544,7 @@
         </section>
 
         <section id="faq">
-            <div class="container" style="max-width: 800px;">
+            <div class="container">
                 <h2 class="section-title">常見問題 Q&A</h2>
                 <div class="faq-item">
                     <p class="faq-question">Q: 線上開戶需要準備什麼？大概要多久？</p>
@@ -569,6 +586,7 @@
                         <div class="card-icon"><span class="iconify" data-icon="fa-brands:line"></span></div>
                         <h3>LINE 洽詢</h3><p>ID: 0919342177</p>
                         <div class="qr-code"><img src="line_qr_code.jpg" alt="LINE QR Code"></div>
+                        <div class="cta-button-placeholder"></div>
                     </div>
                 </div>
             </div>
