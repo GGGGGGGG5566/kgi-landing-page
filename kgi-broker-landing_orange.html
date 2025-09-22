@@ -140,10 +140,10 @@
 
         .card { background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); text-align: center; }
         
-        #gifts, #app-advantages, #steps, #about {
+        #gifts, #app-advantages, #steps, #about, #faq {
             background-color: var(--bg-soft-orange);
         }
-        #promotions, #rsp, #testimonials, #faq {
+        #promotions, #rsp, #testimonials {
             background-color: var(--bg-neutral);
         }
 
@@ -236,7 +236,6 @@
         .faq-answer { margin-top: 15px; }
 
         #cta { background-color: var(--kgi-blue); }
-        /* 【修改】修正CTA標題與副標題顏色 */
         #cta .section-title, #cta .section-subtitle { color: var(--text-light); }
         #cta .grid-3 { align-items: stretch; }
         .cta-card { 
@@ -253,26 +252,26 @@
             color: var(--kgi-orange) !important; 
         }
         .cta-card h3 { color: var(--text-light); }
-        .cta-card p { color: #d0d0d0; flex-grow: 1; }
-        
-        .qr-code {
-            max-width: 160px;
-            width: 75%;
-            aspect-ratio: 1 / 1;
-            margin: 20px auto 0 auto;
-            background-color: #fff;
-            padding: 8px;
-            border-radius: 8px;
+        .cta-card p { 
+            color: #d0d0d0; 
+            margin-bottom: auto;
         }
-        .qr-code img {
-            width: 100%;
+        
+        .qr-code { 
+            width: 150px; 
+            height: 150px; 
+            margin: 20px auto 0 auto; 
+            background-color: #fff; 
+            padding: 5px; 
+            border-radius: 5px; 
+        }
+        .qr-code img { 
+            width: 100%; 
             height: 100%;
-            display: block;
-            object-fit: contain;
+            display: block; 
         }
         .cta-button { margin-top: 25px; }
-        /* 【修改】修正按鈕高度佔位符 */
-        .cta-button-placeholder { min-height: 54px; /* 按鈕42px + margin-top 12px (來自.btn) */ }
+
         #cta .btn-primary {
             background: var(--kgi-orange);
             border: 2px solid var(--kgi-orange);
@@ -586,7 +585,7 @@
                         <div class="card-icon"><span class="iconify" data-icon="fa-brands:line"></span></div>
                         <h3>LINE 洽詢</h3><p>ID: 0919342177</p>
                         <div class="qr-code"><img src="line_qr_code.jpg" alt="LINE QR Code"></div>
-                        <div class="cta-button-placeholder"></div>
+                        <div style="margin-top: 25px; min-height: 42px;"></div>
                     </div>
                 </div>
             </div>
